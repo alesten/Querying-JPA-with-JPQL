@@ -3,6 +3,7 @@ package datebase;
 import entity.Customers;
 import entity.Employees;
 import entity.Offices;
+import entity.Orders;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -85,5 +86,23 @@ public class DbFacade {
         }
         
         return customers;
+    }
+    
+    public List<Orders> getOrdersOnHold(){
+        EntityManager em = dbConnector.getEm();
+        
+        List<Orders> orders;
+        
+        try{
+            em.getTransaction().begin();
+            
+            Query q = em.createNamedQuery("Orders.findByStatus");
+            orders = q.setParameter("status", "On Hold").getResultList();
+            
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return orders;
     }
 }
