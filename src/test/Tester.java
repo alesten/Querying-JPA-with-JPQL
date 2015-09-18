@@ -2,8 +2,7 @@ package test;
 
 import datebase.DbFacade;
 import entity.Customers;
-import entity.Employees;
-import entity.Offices;
+import java.util.List;
 
 public class Tester { 
     public static void main(String[] args) {
@@ -16,7 +15,11 @@ public class Tester {
 //        customer.setCustomerName("Peter Hansen");
 //        Customers updatedCustomer = dbFacade.updateCustomer(customer);
         
-        System.out.println("Total employees: " + dbFacade.getEmplyeCount());
+//        System.out.println("Total employees: " + dbFacade.getEmplyeCount());
         
+        List<Customers> customersInCity = dbFacade.getCustomerInCity("Barcelona");
+        for (Customers customer : customersInCity) {
+            System.out.println(customer.getCustomerName());
+        }
     }
 }

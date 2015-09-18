@@ -3,6 +3,7 @@ package datebase;
 import entity.Customers;
 import entity.Employees;
 import entity.Offices;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -65,5 +66,24 @@ public class DbFacade {
 
         }
         return count;
+    }
+    
+    public List<Customers> getCustomerInCity(String city){
+        EntityManager em = dbConnector.getEm();
+        
+        List<Customers> customers;
+        
+        try{
+            em.getTransaction().begin();
+            
+            Query q = em.createNamedQuery("Customers.findByCity").setParameter("city", city);
+            customers = q.getResultList();
+            
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        
+        return customers;
     }
 }
