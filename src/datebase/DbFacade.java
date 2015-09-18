@@ -1,5 +1,6 @@
 package datebase; 
 
+import entity.Customers;
 import entity.Employees;
 import entity.Offices;
 import javax.persistence.EntityManager;
@@ -29,5 +30,22 @@ public class DbFacade {
         }
         
         return employe;
+    }
+    
+    public Customers updateCustomer(Customers cust){
+        EntityManager em = dbConnector.getEm();
+        
+        Customers customer = em.find(Customers.class, cust.getCustomerNumber());
+        
+        try{
+            em.getTransaction().begin();
+            
+            customer.setCustomerName(cust.getCustomerName()); //Do this for each changed attribute on customer
+            
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return cust;
     }
 }
