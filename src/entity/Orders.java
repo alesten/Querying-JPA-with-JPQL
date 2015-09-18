@@ -27,6 +27,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Orders.findByRequiredDate", query = "SELECT o FROM Orders o WHERE o.requiredDate = :requiredDate"),
     @NamedQuery(name = "Orders.findByShippedDate", query = "SELECT o FROM Orders o WHERE o.shippedDate = :shippedDate"),
     @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status")})
+    @NamedQuery(name = "Orders.findByStatusAndCustomer", query = "SELECT o FROM Orders o WHERE o.status = :status AND o.customerNumber = :customerNumber")
 public class Orders implements Serializable { 
     private static final long serialVersionUID = 1L;
     @Id

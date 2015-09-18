@@ -24,8 +24,13 @@ public class Tester {
 //            System.out.println(customer.getCustomerName());
 //        }
         
-        List<Orders> ordersOnHold = dbFacade.getOrdersOnHold();
-        for (Orders order : ordersOnHold) {
+//        List<Orders> ordersOnHold = dbFacade.getOrdersOnHold();
+//        for (Orders order : ordersOnHold) {
+//            System.out.println(order.getOrderNumber());
+//        }
+        
+        List<Orders> ordersOnHoldFromCustomer = dbFacade.getOrdersOnHold(144);
+        for (Orders order : ordersOnHoldFromCustomer) {
             System.out.println(order.getOrderNumber());
         }
     }

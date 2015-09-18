@@ -105,4 +105,22 @@ public class DbFacade {
         }
         return orders;
     }
+    
+    public List<Orders> getOrdersOnHold(int customerNumber){
+        EntityManager em = dbConnector.getEm();
+        
+        List<Orders> orders;
+        
+        try{
+            em.getTransaction().begin();
+            
+            Query q = em.createNamedQuery("Orders.findByStatusAndCustomer");
+            orders = q.setParameter("status", "On Hold").setParameter("customerNumber", new Customers(customerNumber)).getResultList();
+            
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return orders;
+    }
 }
