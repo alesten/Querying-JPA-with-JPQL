@@ -9,12 +9,14 @@ public class Tester {
     public static void main(String[] args) {
         DbFacade dbFacade = new DbFacade();
         
-        //Employees newEmploye = dbFacade.createEmploye("Peter", "Petersen", "x58776", "Peter@peter.dk", "CEO");
+//        Employees newEmploye = dbFacade.createEmploye("Peter", "Petersen", "x58776", "Peter@peter.dk", "CEO");
         
         
-        Customers customer = new Customers(103);
-        customer.setCustomerName("Peter Hansen");
-        Customers updatedCustomer = dbFacade.updateCustomer(customer);
+//        Customers customer = new Customers(103);
+//        customer.setCustomerName("Peter Hansen");
+//        Customers updatedCustomer = dbFacade.updateCustomer(customer);
+        
+        System.out.println("Total employees: " + dbFacade.getEmplyeCount());
         
     }
 }
